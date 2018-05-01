@@ -11,7 +11,7 @@ void CServer::startServer()
 {
     int port = 1234;
     QHostAddress ip;
-    ip.setAddress("192.168.0.106");
+    ip.setAddress("192.168.11.76");
 
     if(!this->listen(ip, port))
     {

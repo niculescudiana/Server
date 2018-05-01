@@ -27,8 +27,6 @@ public slots:
     void readyRead();
     void disconnected();
     void send(const char* data);
-    void send1();
-
 };
 
 

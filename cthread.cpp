@@ -8,7 +8,6 @@ CThread::CThread(qintptr ID, QObject *parent) :
 
 }
 
-
 void CThread::readyRead()
 {
     
@@ -18,36 +17,25 @@ void CThread::readyRead()
        data = new char[message.size() + 1];
        strcpy(data, message.data());
 
-    qDebug()<<strlen(data)<<" "<<data;
-    qDebug()<<strlen("1;a;b")<< " "<<"1;a;b";
-
-      msocket->write("buzz");
-
-
-    if(strcmp(data,"1;a;b")==0)
-        msocket->write("login");
-
     QString str=data;
     int x=str.split(";")[0].toInt();
     qDebug()<<x;
+
     if(x==1)
        {
+        qDebug()<<"x este 1";
         msocket->write("login");
-        msocket->write("user");
     }
-
-    //msocket->write("sal");
+    if(x==2){
+        qDebug()<<"x este 2";
+        msocket->write("register");
+    }
 
 }
 
 void CThread::send(const char* data)
 {
     msocket->write(data);
-}
-
-void CThread::send1()
-{
-    msocket->write("nu");
 }
 
 void CThread::disconnected()
@@ -94,12 +82,7 @@ void CThread::run()
     // make this thread a loop,
     // thread will stay alive so that signal/slot to function properly
     // not dropped out in the middle when thread dies
-    msocket->readyRead();
 
-    if(strcmp(data,"1;a;b")==0)
-        msocket->write("login");
-
-    //msocket->write(data);
 
     exec();
 
