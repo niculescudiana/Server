@@ -32,3 +32,5 @@ HEADERS += \
     croomlist.h \
     croom.h \
     cclienthandler.h
+
+DISTFILES +=

@@ -1,6 +1,6 @@
 #include "cserver.h"
 #include "cthread.h"
-
+#include "cdatabase.h"
 
 CServer::CServer(QObject *parent) :
     QTcpServer(parent)
@@ -11,7 +11,7 @@ void CServer::startServer()
 {
     int port = 1234;
     QHostAddress ip;
-    ip.setAddress("192.168.11.76");
+    ip.setAddress("172.20.10.3");
 
     if(!this->listen(ip, port))
     {
@@ -22,6 +22,11 @@ void CServer::startServer()
         qDebug() << "Listening to port " << port << "...";
 
     }
+
+    CDataBase* Database;
+    Database = Database->getInstance();
+    Database->setDataBase();
+
 }
 
 // This function is called by QTcpServer when a new connection is available.
