@@ -3,7 +3,7 @@
 #include <QThread>
 #include <QTcpSocket>
 #include <QDebug>
-
+#include"cdatabase.h"
 class CThread : public QThread
 {
     Q_OBJECT
@@ -13,6 +13,7 @@ private:
     qintptr socketDescriptor;
     QByteArray message;
     char* data;
+    //CDataBase* Database;
 
 public:
     explicit CThread(qintptr ID, QObject *parent = 0);

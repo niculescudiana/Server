@@ -1,5 +1,6 @@
 #include "cthread.h"
-
+#include "cdatabase.h"
+#include "cclienthandler.h"
 CThread::CThread(qintptr ID, QObject *parent) :
     QThread(parent)
 {
@@ -18,18 +19,40 @@ void CThread::readyRead()
        strcpy(data, message.data());
 
     QString str=data;
+    CClientHandler ClientHandler;
+    ClientHandler.handleCommand(str);
+
+    const char* msg = ClientHandler.getMessage();
+    msocket->write(msg);
+    /*
     int x=str.split(";")[0].toInt();
     qDebug()<<x;
 
     if(x==1)
        {
         qDebug()<<"x este 1";
+
+        std::string username=str.split(";")[1].toStdString();
+        std::string password=str.split(";")[2].toStdString();
+        bool ok = Database->verifyLogin(username,password);
+        if(ok==0)
+            qDebug() <<"Cont invalid";
+        else if(ok==1)
+             qDebug() <<"Cont valid";
         msocket->write("login");
     }
     if(x==2){
         qDebug()<<"x este 2";
+        QString username=str.split(";")[1];
+        QString password=str.split(";")[2];
+        //qDebug()<<username.c_str();
+        bool ok = Database->verifyUnregisteredUser(username,password);
+        if(ok==0)
+            qDebug() <<"Cont invalid";
+        else if(ok==1)
+             qDebug() <<"Cont valid";
         msocket->write("register");
-    }
+    }*/
 
 }
 
@@ -83,6 +106,7 @@ void CThread::run()
     // thread will stay alive so that signal/slot to function properly
     // not dropped out in the middle when thread dies
 
+   // Database = Database->getInstance();
 
     exec();
 

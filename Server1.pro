@@ -33,4 +33,7 @@ HEADERS += \
     croom.h \
     cclienthandler.h
 
-DISTFILES +=
+DISTFILES += \
+    room1.txt \
+    unregisteredaccounts.txt \
+    ../build-Server1-Desktop_Qt_5_10_1_MSVC2017_64bit-Debug/users.xml

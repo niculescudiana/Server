@@ -8,14 +8,17 @@
 
 class CRoomList
 {
+private:
+    CRoomList();
+    ~CRoomList();
+    static CRoomList* mp_Instance;
 protected:
     std::list <CRoom*> RoomList;
 public:
-
-    CRoomList();
-    ~CRoomList();
-    std::string HasUser(char username);
-    CRoom& GetRoomById(int room_Id);
+    static CRoomList* getInstance();
+    std::string HasUser(char username){}
+    CRoom& GetRoomById(int room_Id){}
+    void createRoom(int room_Id);
 
 };
 

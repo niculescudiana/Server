@@ -5,20 +5,24 @@
 #include<QDebug>
 #include<list>
 #include<iostream>
+#include<QList>
 
 class CDataBase
 {
 private:
-    QDomDocument accounts;
-    std::list <std::string> unregistered_accounts;
+    //QDomDocument accounts;
+    QList <QString> unregistered_accounts;
     CDataBase();
     ~CDataBase();
      static CDataBase *mp_Instance;
 
 public:
     static CDataBase* getInstance();
-    void addUser(std::string username, std::string password){}
-    void setDataBase();
+    void addUser(std::string username, std::string password);
+    bool verifyLogin(std::string username, std::string password);
+    bool verifyUnregisteredUser(QString username,QString password);
+    void setDataBaseRegistered();
+    void setDataBaseUnregistered();
 };
 
 #endif // CDATABASE_H

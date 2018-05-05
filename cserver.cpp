@@ -10,10 +10,10 @@ CServer::CServer(QObject *parent) :
 void CServer::startServer()
 {
     int port = 1234;
-    QHostAddress ip;
-    ip.setAddress("172.20.10.3");
+    //QHostAddress ip;
+    //ip.setAddress("172.20.10.3");
 
-    if(!this->listen(ip, port))
+    if(!this->listen(QHostAddress::Any, port))
     {
         qDebug() << "Could not start server";
     }
@@ -25,7 +25,9 @@ void CServer::startServer()
 
     CDataBase* Database;
     Database = Database->getInstance();
-    Database->setDataBase();
+    Database->setDataBaseRegistered();
+    Database->setDataBaseUnregistered();
+
 
 }
 
