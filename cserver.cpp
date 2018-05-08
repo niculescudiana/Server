@@ -1,6 +1,7 @@
 #include "cserver.h"
 #include "cthread.h"
 #include "cdatabase.h"
+#include "croomlist.h"
 
 CServer::CServer(QObject *parent) :
     QTcpServer(parent)
@@ -27,6 +28,12 @@ void CServer::startServer()
     Database = Database->getInstance();
     Database->setDataBaseRegistered();
     Database->setDataBaseUnregistered();
+
+    CRoomList* RoomList;
+    RoomList= RoomList->getInstance();
+    RoomList->createRoom(1);
+    //RoomList->createRoom(2);
+    //RoomList->createRoom(3);
 
 
 }

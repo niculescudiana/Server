@@ -4,6 +4,8 @@
 #include <list>
 #include<iostream>
 #include<string>
+#include<QString>
+
 //using namespace std;
 
 class CRoomList
@@ -12,13 +14,16 @@ private:
     CRoomList();
     ~CRoomList();
     static CRoomList* mp_Instance;
+    static int number_of_rooms;
 protected:
-    std::list <CRoom*> RoomList;
+    CRoom** RoomList;
 public:
     static CRoomList* getInstance();
-    std::string HasUser(char username){}
-    CRoom& GetRoomById(int room_Id){}
+    bool HasUser(int room_Id, QString username);
+    //CRoom& GetRoomById(int room_Id);
+    void userVotes(int room_id, QString username, QString option);
     void createRoom(int room_Id);
+    QString displayWinner(int room_Id);
 
 };
 

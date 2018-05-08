@@ -24,6 +24,7 @@ void CThread::readyRead()
 
     const char* msg = ClientHandler.getMessage();
     msocket->write(msg);
+    msocket->waitForBytesWritten();
     /*
     int x=str.split(";")[0].toInt();
     qDebug()<<x;
